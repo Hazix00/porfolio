@@ -1,1316 +1,1753 @@
 <!doctype html>
-<html lang="en" data-lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hamza Taoussi — Senior Full-Stack Developer</title>
+    <meta name="theme-color" content="#f7f8fc" />
     <meta
       name="description"
-      content="Senior Full-Stack Developer — TypeScript ecosystem specialist across Angular, React, Next.js and NestJS."
+      content="Hamza Taoussi — Senior Full-Stack Developer building reliable products, distributed systems and thoughtful digital experiences."
     />
-    <style>
-      :root {
-        --color-bg: #161826;
-        --color-surface: #1d2033;
-        --color-text: #e9e9ed;
-        --color-text-dim: #b7b8c4;
-        --color-divider: rgba(233, 233, 237, 0.12);
-        --color-accent: #9184d9;
-        --color-accent-tint: rgba(145, 132, 217, 0.12);
-        --font-heading: "Inter", system-ui, sans-serif;
-        --font-body: "Inter", system-ui, sans-serif;
-        --radius-md: 8px;
-        --radius-lg: 12px;
-        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-      }
-      html[data-theme="light"] {
-        --color-bg: #f5f5f8;
-        --color-surface: #ffffff;
-        --color-text: #23232b;
-        --color-text-dim: #5b5b66;
-        --color-divider: rgba(35, 35, 43, 0.14);
-        --color-accent: #6f5fc9;
-        --color-accent-tint: rgba(111, 95, 201, 0.1);
-        --shadow-sm: 0 0 0 1px #d8dae6;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-        font-family: var(--font-body);
-        background: var(--color-bg);
-        color: var(--color-text);
-        transition:
-          background 0.3s ease,
-          color 0.3s ease;
-      }
-      a {
-        color: var(--color-accent);
-      }
-      a:hover {
-        color: var(--color-text);
-      }
-      .wrap {
-        max-width: 1140px;
-        margin: 0 auto;
-        padding: 0 clamp(20px, 5vw, 64px);
-      }
-
-      /* reveal-on-scroll, CSS-only (progressive enhancement) */
-      [data-reveal] {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      @supports (animation-timeline: view()) {
-        [data-reveal] {
-          animation: reveal linear both;
-          animation-timeline: view();
-          animation-range: entry 0% cover 25%;
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        [data-reveal] {
-          opacity: 1 !important;
-          transform: none !important;
-          animation: none !important;
-        }
-      }
-      @keyframes reveal {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      /* fallback: if scroll-timeline unsupported, just show content */
-      @supports not (animation-timeline: view()) {
-        [data-reveal] {
-          opacity: 1;
-          transform: none;
-        }
-      }
-
-      nav {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 16px clamp(20px, 5vw, 64px);
-        backdrop-filter: blur(10px);
-        background: color-mix(in srgb, var(--color-bg) 80%, transparent);
-        border-bottom: 1px solid var(--color-divider);
-      }
-      .brand {
-        font-weight: 500;
-        font-size: 17px;
-        margin-right: auto;
-        letter-spacing: -0.01em;
-      }
-      .nav-links {
-        display: flex;
-        gap: 22px;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      .nav-links a {
-        text-decoration: none;
-        font-size: 14px;
-        color: color-mix(in srgb, var(--color-text) 78%, transparent);
-      }
-      @media (max-width: 900px) {
-        .nav-links {
-          display: none;
-        }
-      }
-      .lang-toggle,
-      .theme-toggle {
-        border: 1px solid var(--color-divider);
-        border-radius: var(--radius-md);
-        background: transparent;
-        color: var(--color-text);
-        cursor: pointer;
-      }
-      .lang-toggle {
-        display: inline-flex;
-        overflow: hidden;
-      }
-      .lang-toggle button {
-        border: 0;
-        background: transparent;
-        color: color-mix(in srgb, var(--color-text) 70%, transparent);
-        font-weight: 500;
-        font-size: 12.5px;
-        padding: 8px 11px;
-        cursor: pointer;
-      }
-      .lang-toggle button + button {
-        border-left: 1px solid var(--color-divider);
-      }
-      .lang-toggle button[aria-pressed="true"] {
-        color: var(--color-accent);
-        background: var(--color-accent-tint);
-      }
-      .theme-toggle {
-        width: 34px;
-        height: 34px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .theme-toggle:hover,
-      .lang-toggle button:hover:not([aria-pressed="true"]) {
-        background: color-mix(in srgb, var(--color-text) 7%, transparent);
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 18px;
-        border-radius: var(--radius-md);
-        font-size: 14px;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        border: 1px solid transparent;
-      }
-      .btn-primary {
-        border-color: var(--color-accent);
-        color: var(--color-accent);
-      }
-      .btn-primary:hover {
-        background: var(--color-accent-tint);
-        color: var(--color-accent);
-      }
-      .btn-secondary {
-        border-color: var(--color-divider);
-        color: var(--color-text);
-      }
-      .btn-secondary:hover {
-        background: color-mix(in srgb, var(--color-text) 7%, transparent);
-        color: var(--color-text);
-      }
-      .btn-ghost {
-        color: var(--color-text-dim);
-      }
-      .btn-ghost:hover {
-        color: var(--color-text);
-      }
-
-      .hero {
-        padding: 88px 0 72px;
-        position: relative;
-      }
-      .kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 13px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--color-accent);
-        margin: 0 0 20px;
-      }
-      .kicker::before {
-        content: "";
-        width: 32px;
-        height: 1px;
-        background: var(--color-accent);
-      }
-      .hero h1 {
-        font-weight: 500;
-        font-size: clamp(38px, 6vw, 64px);
-        line-height: 1.06;
-        letter-spacing: -0.02em;
-        margin: 0 0 6px;
-      }
-      .hero .role {
-        font-size: clamp(18px, 2.2vw, 22px);
-        color: color-mix(in srgb, var(--color-text) 82%, transparent);
-        margin: 0 0 20px;
-        font-weight: 500;
-      }
-      .hero .pitch {
-        font-size: 17px;
-        line-height: 1.65;
-        max-width: 60ch;
-        color: color-mix(in srgb, var(--color-text) 80%, transparent);
-        margin: 0 0 20px;
-      }
-      .hero .meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 22px;
-        font-size: 13.5px;
-        color: color-mix(in srgb, var(--color-text) 62%, transparent);
-        margin: 0 0 32px;
-      }
-      .hero .meta span {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-      }
-      .cta-row {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      section {
-        padding: 64px 0;
-      }
-      section + section {
-        border-top: 1px solid var(--color-divider);
-      }
-      .section-head {
-        margin-bottom: 40px;
-      }
-      .section-head h2 {
-        font-weight: 500;
-        font-size: clamp(26px, 3vw, 34px);
-        letter-spacing: -0.015em;
-        margin: 0;
-      }
-
-      .about-body {
-        max-width: 68ch;
-        font-size: 16.5px;
-        line-height: 1.7;
-        color: color-mix(in srgb, var(--color-text) 85%, transparent);
-      }
-      .about-body p {
-        margin: 0 0 18px;
-      }
-      .about-body strong {
-        color: var(--color-text);
-        font-weight: 600;
-      }
-
-      .proj-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .proj-card {
-        background: var(--color-surface);
-        border-radius: var(--radius-lg);
-        padding: 32px clamp(20px, 3.5vw, 40px);
-        box-shadow: var(--shadow-sm);
-        display: grid;
-        gap: 18px;
-      }
-      .proj-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      .proj-org {
-        font-size: 13px;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--color-accent);
-        font-weight: 500;
-        margin: 0 0 4px;
-      }
-      .proj-date {
-        font-size: 13px;
-        color: color-mix(in srgb, var(--color-text) 55%, transparent);
-      }
-      .proj-title {
-        font-weight: 500;
-        font-size: 23px;
-        letter-spacing: -0.01em;
-        margin: 0;
-      }
-      .proj-label {
-        font-size: 11px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: color-mix(in srgb, var(--color-text) 55%, transparent);
-        margin: 0 0 6px;
-      }
-      .proj-text {
-        font-size: 15px;
-        line-height: 1.6;
-        margin: 0;
-        color: color-mix(in srgb, var(--color-text) 85%, transparent);
-      }
-      .proj-impact {
-        font-size: 15.5px;
-        line-height: 1.6;
-        margin: 0;
-        padding: 14px 16px;
-        border-radius: var(--radius-md);
-        background: var(--color-accent-tint);
-        border-left: 2px solid var(--color-accent);
-      }
-      .proj-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 4px;
-      }
-      .tag {
-        font-size: 12.5px;
-        padding: 4px 10px;
-        border-radius: 999px;
-        border: 1px solid var(--color-divider);
-        color: color-mix(in srgb, var(--color-text) 80%, transparent);
-      }
-
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 28px 32px;
-      }
-      .skill-cat h3 {
-        font-weight: 500;
-        font-size: 15px;
-        margin: 0 0 14px;
-        color: var(--color-accent);
-      }
-      .skill-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-      .skill-list li {
-        font-size: 13.5px;
-        padding: 5px 12px;
-        border-radius: 999px;
-        border: 1px solid var(--color-divider);
-        color: color-mix(in srgb, var(--color-text) 85%, transparent);
-      }
-
-      .timeline {
-        display: flex;
-        flex-direction: column;
-      }
-      .tl-item {
-        display: grid;
-        grid-template-columns: 26px 1fr;
-        gap: 20px;
-        padding-bottom: 36px;
-      }
-      .tl-item:last-child {
-        padding-bottom: 0;
-      }
-      .tl-dot-col {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .tl-dot {
-        width: 11px;
-        height: 11px;
-        border-radius: 50%;
-        background: var(--color-accent);
-        margin-top: 6px;
-        flex-shrink: 0;
-      }
-      .tl-line {
-        flex: 1;
-        width: 1px;
-        background: var(--color-divider);
-        margin-top: 4px;
-      }
-      .tl-role {
-        font-weight: 500;
-        font-size: 17px;
-        margin: 0 0 4px;
-      }
-      .tl-org {
-        font-size: 14px;
-        color: color-mix(in srgb, var(--color-text) 70%, transparent);
-        margin: 0 0 4px;
-      }
-      .tl-date {
-        font-size: 13px;
-        color: color-mix(in srgb, var(--color-text) 52%, transparent);
-      }
-
-      .contact-inner {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-      }
-      .contact-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-      footer {
-        padding: 28px clamp(20px, 5vw, 64px);
-        border-top: 1px solid var(--color-divider);
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 10px;
-        font-size: 13px;
-        color: color-mix(in srgb, var(--color-text) 55%, transparent);
-      }
-
-      body [data-lang] {
-        display: none;
-      }
-      html[data-lang="en"] [data-lang="en"],
-      html[data-lang="fr"] [data-lang="fr"] {
-        display: initial;
-      }
-      section[data-lang],
-      .hero[data-lang] {
-        display: none;
-      }
-      html[data-lang="en"] section[data-lang="en"],
-      html[data-lang="en"] .hero[data-lang="en"],
-      html[data-lang="fr"] section[data-lang="fr"],
-      html[data-lang="fr"] .hero[data-lang="fr"] {
-        display: block;
-      }
-
-      html[data-lang="en"] li[data-lang="en"],
-      html[data-lang="fr"] li[data-lang="fr"] {
-        display: list-item;
-      }
-    </style>
+    <meta
+      property="og:title"
+      content="Hamza Taoussi — Senior Full-Stack Developer"
+    />
+    <meta
+      property="og:description"
+      content="Backend-led full-stack engineering, system architecture and product delivery."
+    />
+    <meta property="og:type" content="website" />
+    <title>Hamza Taoussi — Senior Full-Stack Developer</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script defer src="js/content.js"></script>
+    <script defer src="js/main.js"></script>
   </head>
   <body>
-    <nav>
-      <span class="brand">Hamza Taoussi</span>
-      <ul class="nav-links">
-        <li data-lang="en"><a href="#about-fr">About</a></li>
-        <li data-lang="en"><a href="#projects-fr">Projects</a></li>
-        <li data-lang="en"><a href="#skills-fr">Skills</a></li>
-        <li data-lang="en"><a href="#experience-fr">Experience</a></li>
-        <li data-lang="en"><a href="#contact-fr">Contact</a></li>
-        <li data-lang="fr"><a href="#about-fr">À propos</a></li>
-        <li data-lang="fr"><a href="#projects-fr">Projets</a></li>
-        <li data-lang="fr"><a href="#skills-fr">Compétences</a></li>
-        <li data-lang="fr"><a href="#experience-fr">Expérience</a></li>
-        <li data-lang="fr"><a href="#contact-fr">Contact</a></li>
-      </ul>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button type="button" id="lang-en" onclick="setLang('en')">EN</button>
-        <button type="button" id="lang-fr" onclick="setLang('fr')">FR</button>
-      </div>
-      <button
-        type="button"
-        class="theme-toggle"
-        id="theme-toggle"
-        onclick="toggleTheme()"
-        aria-label="Toggle color theme"
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Hamza Taoussi home"
+        ><span class="brand-mark">H<span>.</span></span
+        ><span>HAMZA TAOUSSI</span></a
       >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 256 256"
-          fill="none"
-          aria-hidden="true"
-          id="icon-dark"
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#about" data-i18n="nav.about">About</a
+        ><a href="#work" data-i18n="nav.work">Work</a
+        ><a href="#expertise" data-i18n="nav.expertise">Skills</a
+        ><a href="#experience" data-i18n="nav.experience">Experience</a>
+      </nav>
+      <div class="header-actions">
+        <button
+          class="language-toggle"
+          id="languageToggle"
+          aria-label="Switch language"
         >
-          <path
-            d="M120 40V16M120 224v-24M40 120H16M224 120h-24M67 67 51 51M189 189l-16-16M67 173l-16 16M189 51l16 16"
-            stroke="currentColor"
-            stroke-width="14"
-            stroke-linecap="round"
-          />
-          <circle
-            cx="120"
-            cy="120"
-            r="48"
-            stroke="currentColor"
-            stroke-width="14"
-          />
-        </svg>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 256 256"
-          fill="none"
-          aria-hidden="true"
-          id="icon-light"
-          style="display: none"
+          EN <span>↗</span>
+        </button>
+        <a
+          class="header-contact"
+          href="mailto:taoussi.hamza.dev@gmail.com"
+          data-i18n="nav.contact"
+          >Let's talk <span>↗</span></a
         >
-          <path
-            d="M216 136A96 96 0 1 1 120 40a80 80 0 0 0 96 96Z"
-            stroke="currentColor"
-            stroke-width="14"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </button>
-      <a
-        href="CV/CV_HAMZA_TAOUSSI_EN.pdf"
-        class="btn btn-secondary"
-        data-lang="en"
-        target="_blank"
-        >Download CV</a
-      >
-      <a
-        href="CV/CV_HAMZA_TAOUSSI_FR.pdf"
-        class="btn btn-secondary"
-        data-lang="fr"
-        target="_blank"
-        >Télécharger le CV</a
-      >
-    </nav>
-
-    <div class="hero" id="hero" data-lang="en">
-      <div class="wrap">
-        <p class="kicker">Senior Full-Stack Developer</p>
-        <h1>Hamza Taoussi</h1>
-        <p class="role">
-          Building production systems for fintech, government, and B2B SaaS
-        </p>
-        <p class="pitch">
-          <span data-years></span> years shipping full-stack products end to end
-          — TypeScript ecosystem specialist across Angular, React, Next.js and
-          NestJS.
-        </p>
-        <div class="meta">
-          <span>📍 Casablanca-Settat, Morocco (Remote)</span>
-          <span>🌐 English, French, Arabic</span>
-        </div>
-        <div class="cta-row">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="CV/CV_HAMZA_TAOUSSI_EN.pdf" class="btn btn-secondary"
-            >Download CV</a
-          >
-          <a href="#contact" class="btn btn-ghost">Contact</a>
-        </div>
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Open navigation"
+          aria-expanded="false"
+        >
+          <i></i><i></i>
+        </button>
       </div>
-    </div>
-    <div class="hero" id="hero-fr" data-lang="fr">
-      <div class="wrap">
-        <p class="kicker">Développeur Full-Stack Senior</p>
-        <h1>Hamza Taoussi</h1>
-        <p class="role">
-          Concevoir des systèmes en production pour la fintech, le secteur
-          public et le SaaS B2B
-        </p>
-        <p class="pitch">
-          <span data-years></span> ans à livrer des produits full-stack de bout
-          en bout — spécialiste de l'écosystème TypeScript, entre Angular,
-          React, Next.js et NestJS.
-        </p>
-        <div class="meta">
-          <span>📍 Casablanca-Settat, Maroc (Télétravail)</span>
-          <span>🌐 Français, Anglais, Arabe</span>
+    </header>
+    <main id="top">
+      <section class="hero section-wrap">
+        <div class="hero-topline">
+          <span class="eyebrow"
+            ><span class="status-dot"></span
+            ><span data-i18n="hero.availability"
+              >OPEN TO THE RIGHT OPPORTUNITY</span
+            ></span
+          ><span class="hero-index">PORTFOLIO / 2026</span>
         </div>
-        <div class="cta-row">
-          <a href="#projects" class="btn btn-primary">Voir les projets</a>
-          <a href="CV/CV_HAMZA_TAOUSSI_FR.pdf" class="btn btn-secondary"
-            >Télécharger le CV</a
-          >
-          <a href="#contact" class="btn btn-ghost">Contact</a>
-        </div>
-      </div>
-    </div>
-
-    <section id="about" data-lang="en" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>About</h2></div>
-        <div class="about-body">
-          <p>
-            Hamza started his career in <strong>C#/.NET</strong>, building
-            document-processing systems for a banking client — the kind of work
-            where a mishandled edge case means a real customer's application
-            stalls. That grounding in correctness and financial-grade
-            reliability carried forward.
-          </p>
-          <p>
-            He moved into <strong>Angular and NestJS microservices</strong>,
-            architecting a government regulatory platform used to digitize a
-            previously manual, opaque approval process. From there, into
-            <strong>React, Next.js and NestJS</strong> on B2B SaaS products,
-            most recently building automated compliance tooling for banks.
-          </p>
-          <p>
-            Across all of it, the throughline is the same: he solves the
-            business problem, not just the ticket. Comfortable owning a feature
-            end to end — from the interface, through the API and data model, to
-            what runs in production.
-          </p>
-        </div>
-      </div>
-    </section>
-    <section id="about-fr" data-lang="fr" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>À propos</h2></div>
-        <div class="about-body">
-          <p>
-            Hamza a débuté sa carrière en <strong>C#/.NET</strong>, en
-            développant des systèmes de gestion documentaire pour un client
-            bancaire — un secteur où une erreur de traitement immobilise une
-            vraie demande client. Cette exigence de fiabilité et de rigueur l'a
-            suivi depuis.
-          </p>
-          <p>
-            Il est ensuite passé aux
-            <strong>microservices Angular et NestJS</strong>, en concevant une
-            plateforme réglementaire gouvernementale destinée à numériser un
-            processus d'approbation jusque-là manuel et opaque. Puis vers
-            <strong>React, Next.js et NestJS</strong> sur des produits SaaS B2B,
-            avec récemment la conception d'outils de conformité automatisés pour
-            des banques.
-          </p>
-          <p>
-            Dans tous les cas, le fil conducteur reste le même : il résout le
-            problème métier, pas seulement le ticket. À l'aise pour porter une
-            fonctionnalité de bout en bout — de l'interface, à l'API et au
-            modèle de données, jusqu'à ce qui tourne en production.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" data-lang="en" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>Featured Projects</h2></div>
-        <div class="proj-grid">
-          <article class="proj-card">
-            <div class="proj-top">
-              <div>
-                <p class="proj-org">Flow Digital</p>
-                <h3 class="proj-title">KYC Platform for Banks</h3>
-              </div>
-              <span class="proj-date">2023 — Present</span>
-            </div>
-            <div>
-              <p class="proj-label">Problem</p>
-              <p class="proj-text">
-                Banks needed compliance agents to manually review 20–30 minutes
-                of documents per customer application — bank statements, ID
-                cards, address certificates. Slow, error-prone, expensive at
-                scale.
-              </p>
-            </div>
-            <div>
-              <p class="proj-label">Solution</p>
-              <p class="proj-text">
-                Built an automated onboarding platform: client-side document
-                capture, facial verification (selfie vs. ID), OCR and AI-powered
-                document extraction, real-time status. A hybrid LLM approach —
-                Qwen2.5-VL for visual documents, plain text extraction for
-                text-heavy ones — kept compute cost under control.
-              </p>
-            </div>
-            <p class="proj-impact">
-              Reduced agent review time from
-              <strong>20–30 minutes to 5–10 minutes</strong> per application.
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="kicker" data-i18n="hero.kicker">
+              SENIOR FULL-STACK DEVELOPER · BACKEND-LED
             </p>
-            <div class="proj-tags">
-              <span class="tag">Next.js</span><span class="tag">React</span
-              ><span class="tag">NestJS</span><span class="tag">Python</span
-              ><span class="tag">PaddleOCR</span
-              ><span class="tag">Qwen2.5-VL</span
-              ><span class="tag">InsightFace</span
-              ><span class="tag">PostgreSQL</span
-              ><span class="tag">RabbitMQ</span><span class="tag">Docker</span>
-            </div>
-          </article>
-          <article class="proj-card">
-            <div class="proj-top">
-              <div>
-                <p class="proj-org">ABA Technology</p>
-                <h3 class="proj-title">
-                  DmpEServices — Government Regulatory Platform
-                </h3>
-              </div>
-              <span class="proj-date">2021 — 2023</span>
-            </div>
-            <div>
-              <p class="proj-label">Problem</p>
-              <p class="proj-text">
-                Morocco's Ministry of Health pharmaceutical procurement process
-                was entirely manual and non-transparent — roughly 2,000 distinct
-                approval workflows across regions and categories, no audit
-                trail, vulnerable to corruption.
-              </p>
-            </div>
-            <div>
-              <p class="proj-label">Solution</p>
-              <p class="proj-text">
-                Designed and built a microservices platform (Nx monorepo, three
-                Angular apps, multiple NestJS services) including a dynamic
-                no-code workflow builder — non-technical staff visually design
-                multi-step approval workflows with forms, decision branches and
-                conditional logic. Built the interactive diagram engine
-                (SVG-based positioning algorithm) and the underlying workflow
-                execution engine (graph traversal, linked-list persistence).
-              </p>
-            </div>
-            <p class="proj-impact">
-              Cut new-workflow deployment time from
-              <strong>weeks to hours</strong> and brought full auditability to a
-              previously opaque government process.
+            <h1 data-i18n-html="hero.title">
+              I turn complex<br /><em>systems</em> into<br />useful
+              products<span class="title-period">.</span>
+            </h1>
+            <p class="hero-intro" data-i18n="hero.intro">
+              I’m Hamza — an engineer focused on building dependable backend
+              systems and thoughtful full-stack experiences, from the first
+              architectural decision to production.
             </p>
-            <div class="proj-tags">
-              <span class="tag">Angular</span><span class="tag">NestJS</span
-              ><span class="tag">MongoDB</span><span class="tag">Keycloak</span
-              ><span class="tag">WebSocket</span
-              ><span class="tag">Nx Monorepo</span
-              ><span class="tag">Docker</span>
-            </div>
-          </article>
-          <article class="proj-card">
-            <div class="proj-top">
-              <div>
-                <p class="proj-org">Flow Digital — Lizee, Devis Home, Keeze</p>
-                <h3 class="proj-title">B2B SaaS Platform Suite</h3>
-              </div>
-              <span class="proj-date">2023 — Present</span>
-            </div>
-            <div>
-              <p class="proj-label">Problem</p>
-              <p class="proj-text">
-                Three distinct B2B products needed a developer who could move
-                fluidly across domains — rental and inventory logistics, quote
-                and supplier management, event-space booking.
-              </p>
-            </div>
-            <div>
-              <p class="proj-label">Solution</p>
-              <p class="proj-text">
-                Delivered full-stack features across all three: multi-warehouse
-                inventory and invoicing (Lizee), a CRM with e-signature and
-                validation workflows (Devis Home), and calendar sync with
-                RBAC-driven booking (Keeze).
-              </p>
-            </div>
-            <p class="proj-impact">
-              <strong>One developer, three live product lines</strong> —
-              supported simultaneously with no drop in delivery pace.
-            </p>
-            <div class="proj-tags">
-              <span class="tag">Next.js</span><span class="tag">React</span
-              ><span class="tag">Tailwind</span><span class="tag">NestJS</span
-              ><span class="tag">TypeORM</span
-              ><span class="tag">PostgreSQL</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section id="projects-fr" data-lang="fr" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>Projets phares</h2></div>
-        <div class="proj-grid">
-          <article class="proj-card">
-            <div class="proj-top">
-              <div>
-                <p class="proj-org">Flow Digital</p>
-                <h3 class="proj-title">Plateforme KYC pour banques</h3>
-              </div>
-              <span class="proj-date">2023 — Présent</span>
-            </div>
-            <div>
-              <p class="proj-label">Problème</p>
-              <p class="proj-text">
-                Les banques avaient besoin d'agents de conformité pour examiner
-                manuellement 20 à 30 minutes de documents par dossier client —
-                relevés bancaires, pièces d'identité, justificatifs de domicile.
-                Lent, sujet à erreurs, coûteux à grande échelle.
-              </p>
-            </div>
-            <div>
-              <p class="proj-label">Solution</p>
-              <p class="proj-text">
-                Développement d'une plateforme d'onboarding automatisée :
-                capture de documents côté client, vérification faciale (selfie
-                vs pièce d'identité), extraction OCR et structuration IA des
-                documents, statut en temps réel. Une approche hybride par LLM —
-                Qwen2.5-VL pour les documents visuels, extraction de texte
-                simple pour les documents textuels — pour maîtriser le coût de
-                calcul.
-              </p>
-            </div>
-            <p class="proj-impact">
-              Temps de révision réduit de
-              <strong>20-30 minutes à 5-10 minutes</strong> par dossier.
-            </p>
-            <div class="proj-tags">
-              <span class="tag">Next.js</span><span class="tag">React</span
-              ><span class="tag">NestJS</span><span class="tag">Python</span
-              ><span class="tag">PaddleOCR</span
-              ><span class="tag">Qwen2.5-VL</span
-              ><span class="tag">InsightFace</span
-              ><span class="tag">PostgreSQL</span
-              ><span class="tag">RabbitMQ</span><span class="tag">Docker</span>
-            </div>
-          </article>
-          <article class="proj-card">
-            <div class="proj-top">
-              <div>
-                <p class="proj-org">ABA Technology</p>
-                <h3 class="proj-title">
-                  DmpEServices — Plateforme réglementaire gouvernementale
-                </h3>
-              </div>
-              <span class="proj-date">2021 — 2023</span>
-            </div>
-            <div>
-              <p class="proj-label">Problème</p>
-              <p class="proj-text">
-                Le processus d'achat pharmaceutique du ministère de la Santé du
-                Maroc était entièrement manuel et opaque — environ 2 000
-                workflows d'approbation distincts selon les régions et
-                catégories, aucune traçabilité, vulnérable à la corruption.
-              </p>
-            </div>
-            <div>
-              <p class="proj-label">Solution</p>
-              <p class="proj-text">
-                Conception et développement d'une plateforme microservices
-                (monorepo Nx, trois applications Angular, plusieurs services
-                NestJS) incluant un constructeur de workflows no-code — le
-                personnel non technique conçoit visuellement des workflows
-                d'approbation multi-étapes avec formulaires, embranchements de
-                décision et logique conditionnelle. Conception du moteur de
-                diagramme interactif (algorithme de positionnement SVG) et du
-                moteur d'exécution des workflows (parcours de graphe,
-                persistance en liste chaînée).
-              </p>
-            </div>
-            <p class="proj-impact">
-              Délai de déploiement d'un nouveau workflow réduit de
-              <strong>plusieurs semaines à quelques heures</strong>, avec une
-              traçabilité complète apportée à un processus gouvernemental
-              jusque-là opaque.
-            </p>
-            <div class="proj-tags">
-              <span class="tag">Angular</span><span class="tag">NestJS</span
-              ><span class="tag">MongoDB</span><span class="tag">Keycloak</span
-              ><span class="tag">WebSocket</span
-              ><span class="tag">Nx Monorepo</span
-              ><span class="tag">Docker</span>
-            </div>
-          </article>
-          <article class="proj-card">
-            <div class="proj-top">
-              <div>
-                <p class="proj-org">Flow Digital — Lizee, Devis Home, Keeze</p>
-                <h3 class="proj-title">Suite de plateformes SaaS B2B</h3>
-              </div>
-              <span class="proj-date">2023 — Présent</span>
-            </div>
-            <div>
-              <p class="proj-label">Problème</p>
-              <p class="proj-text">
-                Trois produits B2B distincts nécessitaient un développeur
-                capable de naviguer avec aisance entre plusieurs domaines —
-                logistique de location et d'inventaire, gestion de devis et
-                fournisseurs, réservation d'espaces événementiels.
-              </p>
-            </div>
-            <div>
-              <p class="proj-label">Solution</p>
-              <p class="proj-text">
-                Livraison de fonctionnalités full-stack sur les trois produits :
-                inventaire multi-entrepôts et facturation (Lizee), CRM avec
-                signature électronique et workflows de validation (Devis Home),
-                synchronisation calendrier et réservation pilotée par les rôles
-                (Keeze).
-              </p>
-            </div>
-            <p class="proj-impact">
-              <strong
-                >Un seul développeur, trois lignes de produits en
-                production</strong
+            <div class="hero-ctas">
+              <a class="button button-dark" href="#work"
+                ><span data-i18n="hero.ctaWork">Explore selected work</span
+                ><span>↘</span></a
+              ><a
+                class="text-link"
+                href="mailto:taoussi.hamza.dev@gmail.com"
+                data-i18n="hero.ctaContact"
+                >Get in touch ↗</a
               >
-              — soutenues simultanément sans ralentir le rythme de livraison.
+            </div>
+          </div>
+          <div
+            class="hero-art"
+            aria-label="Abstract system architecture illustration"
+          >
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="art-label label-top">THINK / BUILD / IMPROVE</div>
+            <div class="core-node">
+              <span class="core-symbol">H<span>.</span></span
+              ><small>ENGINEERING<br />WITH INTENT</small>
+            </div>
+            <div class="orbit-node node-a"><b>API</b><small>DESIGN</small></div>
+            <div class="orbit-node node-b"><b>DATA</b><small>FLOW</small></div>
+            <div class="orbit-node node-c">
+              <b>UX</b><small>DELIVERY</small>
+            </div>
+            <div class="orbit-node node-d">
+              <b>OPS</b><small>RELIABILITY</small>
+            </div>
+            <div class="art-cross cross-a">+</div>
+            <div class="art-cross cross-b">+</div>
+            <div class="art-label label-bottom">
+              NODE.JS · TYPESCRIPT · SYSTEMS
+            </div>
+          </div>
+        </div>
+        <div class="hero-foot">
+          <span data-i18n="hero.location"
+            >BASED IN MOROCCO · WORKING WORLDWIDE</span
+          ><span>SCROLL TO EXPLORE ↓</span>
+        </div>
+      </section>
+
+      <section class="intro-strip section-wrap" id="about">
+        <div class="section-tag">
+          <span>01</span
+          ><span data-i18n="sections.about">A LITTLE ABOUT ME</span>
+        </div>
+        <div class="intro-content">
+          <h2 data-i18n-html="about.heading">
+            Engineering is more than<br />making things <em>work.</em>
+          </h2>
+          <div class="intro-columns">
+            <p data-i18n="about.p1">
+              I enjoy understanding the real problem behind a feature, shaping a
+              practical solution, and making sure it holds up in production. My
+              experience spans SaaS platforms, workflow-heavy applications,
+              real-time systems and document-processing pipelines.
             </p>
-            <div class="proj-tags">
-              <span class="tag">Next.js</span><span class="tag">React</span
-              ><span class="tag">Tailwind</span><span class="tag">NestJS</span
-              ><span class="tag">TypeORM</span
-              ><span class="tag">PostgreSQL</span>
+            <p data-i18n="about.p2">
+              I’m most at home where backend architecture, product thinking and
+              full-stack delivery meet — collaborating openly, questioning
+              complexity and improving systems step by step.
+            </p>
+          </div>
+          <div class="stat-row">
+            <div class="stat">
+              <strong id="experienceYears">7+</strong
+              ><span data-i18n="about.statYears"
+                >years since my first professional role</span
+              >
+            </div>
+            <div class="stat">
+              <strong>3</strong
+              ><span data-i18n="about.statDomains"
+                >core domains: SaaS, healthcare, document workflows</span
+              >
+            </div>
+            <div class="stat">
+              <strong>0 → 1</strong
+              ><span data-i18n="about.statMindset"
+                >from problem framing to production ownership</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="work-section section-wrap" id="work">
+        <div class="section-heading">
+          <div>
+            <div class="section-tag">
+              <span>02</span
+              ><span data-i18n="sections.selected">SELECTED WORK</span>
+            </div>
+            <h2 data-i18n="work.heading">
+              Products, platforms<br />& real-world problems.
+            </h2>
+          </div>
+          <p data-i18n="work.subheading">
+            A selection of products and systems I contributed to. Each story
+            focuses on the product context, engineering challenge and my
+            personal contribution.
+          </p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card project-featured">
+            <a
+              class="project-visual visual-keeze"
+              href="https://www.keeze.co"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Visit Keeze website"
+              ><div
+                class="project-carousel"
+                data-carousel
+                aria-label="Keeze project images"
+              >
+                <div class="carousel-track">
+                  <div
+                    class="carousel-slide is-active"
+                    data-slide="0"
+                    aria-hidden="false"
+                  >
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/keeze-img-1/keeze-img-1-mobile-1x.webp 390w,
+                          assets/keeze-img-1/keeze-img-1-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/keeze-img-1/keeze-img-1-mobile-1x.jpg 390w,
+                          assets/keeze-img-1/keeze-img-1-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/keeze-img-1/keeze-img-1-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/keeze-img-1/keeze-img-1-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/keeze-img-1/keeze-img-1-tablet-lg.webp  1024w,
+                          assets/keeze-img-1/keeze-img-1-desktop-md.webp 1200w,
+                          assets/keeze-img-1/keeze-img-1-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/keeze-img-1/keeze-img-1-tablet-lg.jpg  1024w,
+                          assets/keeze-img-1/keeze-img-1-desktop-md.jpg 1200w,
+                          assets/keeze-img-1/keeze-img-1-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/keeze-img-1/keeze-img-1-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Keeze event-space reservation and operations interface — image 1 of 3"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="1" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/keeze-img-2/keeze-img-2-mobile-1x.webp 390w,
+                          assets/keeze-img-2/keeze-img-2-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/keeze-img-2/keeze-img-2-mobile-1x.jpg 390w,
+                          assets/keeze-img-2/keeze-img-2-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/keeze-img-2/keeze-img-2-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/keeze-img-2/keeze-img-2-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/keeze-img-2/keeze-img-2-tablet-lg.webp  1024w,
+                          assets/keeze-img-2/keeze-img-2-desktop-md.webp 1200w,
+                          assets/keeze-img-2/keeze-img-2-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/keeze-img-2/keeze-img-2-tablet-lg.jpg  1024w,
+                          assets/keeze-img-2/keeze-img-2-desktop-md.jpg 1200w,
+                          assets/keeze-img-2/keeze-img-2-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/keeze-img-2/keeze-img-2-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Keeze event-space reservation and operations interface — image 2 of 3"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="2" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/keeze-img-3/keeze-img-3-mobile-1x.webp 390w,
+                          assets/keeze-img-3/keeze-img-3-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/keeze-img-3/keeze-img-3-mobile-1x.jpg 390w,
+                          assets/keeze-img-3/keeze-img-3-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/keeze-img-3/keeze-img-3-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/keeze-img-3/keeze-img-3-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/keeze-img-3/keeze-img-3-tablet-lg.webp  1024w,
+                          assets/keeze-img-3/keeze-img-3-desktop-md.webp 1200w,
+                          assets/keeze-img-3/keeze-img-3-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/keeze-img-3/keeze-img-3-tablet-lg.jpg  1024w,
+                          assets/keeze-img-3/keeze-img-3-desktop-md.jpg 1200w,
+                          assets/keeze-img-3/keeze-img-3-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/keeze-img-3/keeze-img-3-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Keeze event-space reservation and operations interface — image 3 of 3"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                </div>
+                <div class="carousel-controls">
+                  <button
+                    class="carousel-arrow"
+                    type="button"
+                    data-prev
+                    aria-label="Previous image"
+                  >
+                    ‹
+                  </button>
+                  <div class="carousel-dots">
+                    <button
+                      class="carousel-dot is-active"
+                      type="button"
+                      aria-label="Show image 1"
+                      aria-pressed="true"
+                      data-go-to="0"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 2"
+                      aria-pressed="false"
+                      data-go-to="1"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 3"
+                      aria-pressed="false"
+                      data-go-to="2"
+                    ></button>
+                  </div>
+                  <button
+                    class="carousel-arrow"
+                    type="button"
+                    data-next
+                    aria-label="Next image"
+                  >
+                    ›
+                  </button>
+                  <span class="carousel-count"
+                    ><span data-current>01</span> / 03</span
+                  >
+                </div>
+              </div>
+              <span class="visual-corner">01 / PRODUCT</span
+              ><span class="visual-open">↗</span></a
+            >
+            <div class="project-meta">
+              <span>EVENT OPERATIONS · B2B</span><span>2023 — 2024*</span>
+            </div>
+            <div class="project-title-row">
+              <h3>Keeze</h3>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p data-i18n="projects.keeze.desc">
+              Event-space reservation and management platform. I built an
+              operational planning feature and independently optimized
+              reservation-calendar queries, reducing response time from up to ~2
+              seconds to around 100 ms or less.
+            </p>
+            <div class="tag-list">
+              <span>NestJS</span><span>Next.js</span><span>PostgreSQL</span
+              ><span>MongoDB</span><span>TypeORM</span>
+            </div>
+            <a
+              class="project-link"
+              href="https://www.keeze.co"
+              target="_blank"
+              rel="noreferrer"
+              ><span data-i18n="projects.visit">Visit product website</span>
+              ↗</a
+            >
+          </article>
+          <article class="project-card">
+            <a
+              class="project-visual visual-lizee"
+              href="https://lizee.co/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Visit Lizee website"
+              ><div
+                class="project-carousel"
+                data-carousel
+                aria-label="Lizee project images"
+              >
+                <div class="carousel-track">
+                  <div
+                    class="carousel-slide is-active"
+                    data-slide="0"
+                    aria-hidden="false"
+                  >
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-1/lizee-img-1-mobile-1x.webp 390w,
+                          assets/lizee-img-1/lizee-img-1-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-1/lizee-img-1-mobile-1x.jpg 390w,
+                          assets/lizee-img-1/lizee-img-1-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/lizee-img-1/lizee-img-1-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/lizee-img-1/lizee-img-1-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-1/lizee-img-1-tablet-lg.webp  1024w,
+                          assets/lizee-img-1/lizee-img-1-desktop-md.webp 1200w,
+                          assets/lizee-img-1/lizee-img-1-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-1/lizee-img-1-tablet-lg.jpg  1024w,
+                          assets/lizee-img-1/lizee-img-1-desktop-md.jpg 1200w,
+                          assets/lizee-img-1/lizee-img-1-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/lizee-img-1/lizee-img-1-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Lizee rental and circular-commerce platform interface — image 1 of 9"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="1" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-2/lizee-img-2-mobile-1x.webp 390w,
+                          assets/lizee-img-2/lizee-img-2-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-2/lizee-img-2-mobile-1x.jpg 390w,
+                          assets/lizee-img-2/lizee-img-2-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/lizee-img-2/lizee-img-2-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/lizee-img-2/lizee-img-2-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-2/lizee-img-2-tablet-lg.webp  1024w,
+                          assets/lizee-img-2/lizee-img-2-desktop-md.webp 1200w,
+                          assets/lizee-img-2/lizee-img-2-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-2/lizee-img-2-tablet-lg.jpg  1024w,
+                          assets/lizee-img-2/lizee-img-2-desktop-md.jpg 1200w,
+                          assets/lizee-img-2/lizee-img-2-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/lizee-img-2/lizee-img-2-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Lizee rental and circular-commerce platform interface — image 2 of 9"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="2" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-3/lizee-img-3-mobile-1x.webp 390w,
+                          assets/lizee-img-3/lizee-img-3-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-3/lizee-img-3-mobile-1x.jpg 390w,
+                          assets/lizee-img-3/lizee-img-3-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/lizee-img-3/lizee-img-3-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/lizee-img-3/lizee-img-3-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-3/lizee-img-3-tablet-lg.webp  1024w,
+                          assets/lizee-img-3/lizee-img-3-desktop-md.webp 1200w,
+                          assets/lizee-img-3/lizee-img-3-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-3/lizee-img-3-tablet-lg.jpg  1024w,
+                          assets/lizee-img-3/lizee-img-3-desktop-md.jpg 1200w,
+                          assets/lizee-img-3/lizee-img-3-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/lizee-img-3/lizee-img-3-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Lizee rental and circular-commerce platform interface — image 3 of 9"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="3" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-4/lizee-img-4-mobile-1x.webp 390w,
+                          assets/lizee-img-4/lizee-img-4-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-4/lizee-img-4-mobile-1x.jpg 390w,
+                          assets/lizee-img-4/lizee-img-4-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/lizee-img-4/lizee-img-4-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/lizee-img-4/lizee-img-4-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-4/lizee-img-4-tablet-lg.webp  1024w,
+                          assets/lizee-img-4/lizee-img-4-desktop-md.webp 1200w,
+                          assets/lizee-img-4/lizee-img-4-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-4/lizee-img-4-tablet-lg.jpg  1024w,
+                          assets/lizee-img-4/lizee-img-4-desktop-md.jpg 1200w,
+                          assets/lizee-img-4/lizee-img-4-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/lizee-img-4/lizee-img-4-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Lizee rental and circular-commerce platform interface — image 4 of 9"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="4" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-5/lizee-img-5-mobile-1x.webp 390w,
+                          assets/lizee-img-5/lizee-img-5-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-5/lizee-img-5-mobile-1x.jpg 390w,
+                          assets/lizee-img-5/lizee-img-5-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/lizee-img-5/lizee-img-5-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/lizee-img-5/lizee-img-5-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-5/lizee-img-5-tablet-lg.webp  1024w,
+                          assets/lizee-img-5/lizee-img-5-desktop-md.webp 1200w,
+                          assets/lizee-img-5/lizee-img-5-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-5/lizee-img-5-tablet-lg.jpg  1024w,
+                          assets/lizee-img-5/lizee-img-5-desktop-md.jpg 1200w,
+                          assets/lizee-img-5/lizee-img-5-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/lizee-img-5/lizee-img-5-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Lizee rental and circular-commerce platform interface — image 5 of 9"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="5" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-6/lizee-img-6-mobile-1x.webp 390w,
+                          assets/lizee-img-6/lizee-img-6-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-6/lizee-img-6-mobile-1x.jpg 390w,
+                          assets/lizee-img-6/lizee-img-6-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/lizee-img-6/lizee-img-6-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/lizee-img-6/lizee-img-6-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-6/lizee-img-6-tablet-lg.webp  1024w,
+                          assets/lizee-img-6/lizee-img-6-desktop-md.webp 1200w,
+                          assets/lizee-img-6/lizee-img-6-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-6/lizee-img-6-tablet-lg.jpg  1024w,
+                          assets/lizee-img-6/lizee-img-6-desktop-md.jpg 1200w,
+                          assets/lizee-img-6/lizee-img-6-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/lizee-img-6/lizee-img-6-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Lizee rental and circular-commerce platform interface — image 6 of 9"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="6" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-7/lizee-img-7-mobile-1x.webp 390w,
+                          assets/lizee-img-7/lizee-img-7-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-7/lizee-img-7-mobile-1x.jpg 390w,
+                          assets/lizee-img-7/lizee-img-7-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/lizee-img-7/lizee-img-7-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/lizee-img-7/lizee-img-7-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-7/lizee-img-7-tablet-lg.webp  1024w,
+                          assets/lizee-img-7/lizee-img-7-desktop-md.webp 1200w,
+                          assets/lizee-img-7/lizee-img-7-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-7/lizee-img-7-tablet-lg.jpg  1024w,
+                          assets/lizee-img-7/lizee-img-7-desktop-md.jpg 1200w,
+                          assets/lizee-img-7/lizee-img-7-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/lizee-img-7/lizee-img-7-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Lizee rental and circular-commerce platform interface — image 7 of 9"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="7" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-8/lizee-img-8-mobile-1x.webp 390w,
+                          assets/lizee-img-8/lizee-img-8-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-8/lizee-img-8-mobile-1x.jpg 390w,
+                          assets/lizee-img-8/lizee-img-8-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/lizee-img-8/lizee-img-8-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/lizee-img-8/lizee-img-8-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-8/lizee-img-8-tablet-lg.webp  1024w,
+                          assets/lizee-img-8/lizee-img-8-desktop-md.webp 1200w,
+                          assets/lizee-img-8/lizee-img-8-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-8/lizee-img-8-tablet-lg.jpg  1024w,
+                          assets/lizee-img-8/lizee-img-8-desktop-md.jpg 1200w,
+                          assets/lizee-img-8/lizee-img-8-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/lizee-img-8/lizee-img-8-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Lizee rental and circular-commerce platform interface — image 8 of 9"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="8" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-9/lizee-img-9-mobile-1x.webp 390w,
+                          assets/lizee-img-9/lizee-img-9-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-9/lizee-img-9-mobile-1x.jpg 390w,
+                          assets/lizee-img-9/lizee-img-9-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="assets/lizee-img-9/lizee-img-9-tablet-sm.webp"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="assets/lizee-img-9/lizee-img-9-tablet-sm.jpg"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/lizee-img-9/lizee-img-9-tablet-lg.webp  1024w,
+                          assets/lizee-img-9/lizee-img-9-desktop-md.webp 1200w,
+                          assets/lizee-img-9/lizee-img-9-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/lizee-img-9/lizee-img-9-tablet-lg.jpg  1024w,
+                          assets/lizee-img-9/lizee-img-9-desktop-md.jpg 1200w,
+                          assets/lizee-img-9/lizee-img-9-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/lizee-img-9/lizee-img-9-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Lizee rental and circular-commerce platform interface — image 9 of 9"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                </div>
+                <div class="carousel-controls">
+                  <button
+                    class="carousel-arrow"
+                    type="button"
+                    data-prev
+                    aria-label="Previous image"
+                  >
+                    ‹
+                  </button>
+                  <div class="carousel-dots">
+                    <button
+                      class="carousel-dot is-active"
+                      type="button"
+                      aria-label="Show image 1"
+                      aria-pressed="true"
+                      data-go-to="0"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 2"
+                      aria-pressed="false"
+                      data-go-to="1"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 3"
+                      aria-pressed="false"
+                      data-go-to="2"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 4"
+                      aria-pressed="false"
+                      data-go-to="3"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 5"
+                      aria-pressed="false"
+                      data-go-to="4"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 6"
+                      aria-pressed="false"
+                      data-go-to="5"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 7"
+                      aria-pressed="false"
+                      data-go-to="6"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 8"
+                      aria-pressed="false"
+                      data-go-to="7"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 9"
+                      aria-pressed="false"
+                      data-go-to="8"
+                    ></button>
+                  </div>
+                  <button
+                    class="carousel-arrow"
+                    type="button"
+                    data-next
+                    aria-label="Next image"
+                  >
+                    ›
+                  </button>
+                  <span class="carousel-count"
+                    ><span data-current>01</span> / 09</span
+                  >
+                </div>
+              </div>
+              <span class="visual-corner">02 / SAAS</span
+              ><span class="visual-open">↗</span></a
+            >
+            <div class="project-meta">
+              <span>CIRCULAR COMMERCE · B2B</span><span>2024 — 2026*</span>
+            </div>
+            <div class="project-title-row">
+              <h3>Lizee</h3>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p data-i18n="projects.lizee.desc">
+              Rental, second-hand and subscription commerce platform.
+              Contributions included catalog synchronization reliability,
+              storefront performance improvements and an end-to-end
+              rental-deposit integration.
+            </p>
+            <div class="tag-list">
+              <span>Next.js</span><span>NestJS</span><span>Sylius</span
+              ><span>MySQL</span><span>Docker</span>
+            </div>
+            <a
+              class="project-link"
+              href="https://lizee.co/"
+              target="_blank"
+              rel="noreferrer"
+              ><span data-i18n="projects.visit">Visit product website</span>
+              ↗</a
+            >
+          </article>
+          <article class="project-card">
+            <a
+              class="project-visual visual-devis"
+              href="https://devihomes.com/index.php"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Visit Devis Home website"
+              ><div
+                class="project-carousel"
+                data-carousel
+                aria-label="Devis Home project images"
+              >
+                <div class="carousel-track">
+                  <div
+                    class="carousel-slide is-active"
+                    data-slide="0"
+                    aria-hidden="false"
+                  >
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/devihome-img-1/devihome-img-1-mobile-1x.webp 390w,
+                          assets/devihome-img-1/devihome-img-1-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/devihome-img-1/devihome-img-1-mobile-1x.jpg 390w,
+                          assets/devihome-img-1/devihome-img-1-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="
+                          assets/devihome-img-1/devihome-img-1-tablet-sm.webp
+                        "
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/devihome-img-1/devihome-img-1-tablet-sm.jpg
+                        "
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/devihome-img-1/devihome-img-1-tablet-lg.webp  1024w,
+                          assets/devihome-img-1/devihome-img-1-desktop-md.webp 1200w,
+                          assets/devihome-img-1/devihome-img-1-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/devihome-img-1/devihome-img-1-tablet-lg.jpg  1024w,
+                          assets/devihome-img-1/devihome-img-1-desktop-md.jpg 1200w,
+                          assets/devihome-img-1/devihome-img-1-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/devihome-img-1/devihome-img-1-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Devis Home quotation and supplier-management interface — image 1 of 2"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                  <div class="carousel-slide" data-slide="1" aria-hidden="true">
+                    <picture class="project-picture">
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/webp"
+                        srcset="
+                          assets/devihome-img-2/devihome-img-2-mobile-1x.webp 390w,
+                          assets/devihome-img-2/devihome-img-2-mobile-2x.webp 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/devihome-img-2/devihome-img-2-mobile-1x.jpg 390w,
+                          assets/devihome-img-2/devihome-img-2-mobile-2x.jpg 780w
+                        "
+                        sizes="(max-width: 767px) 100vw"
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/webp"
+                        srcset="
+                          assets/devihome-img-2/devihome-img-2-tablet-sm.webp
+                        "
+                      />
+                      <source
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/devihome-img-2/devihome-img-2-tablet-sm.jpg
+                        "
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/webp"
+                        srcset="
+                          assets/devihome-img-2/devihome-img-2-tablet-lg.webp  1024w,
+                          assets/devihome-img-2/devihome-img-2-desktop-md.webp 1200w,
+                          assets/devihome-img-2/devihome-img-2-desktop-lg.webp 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <source
+                        media="(min-width: 1024px)"
+                        type="image/jpeg"
+                        srcset="
+                          assets/devihome-img-2/devihome-img-2-tablet-lg.jpg  1024w,
+                          assets/devihome-img-2/devihome-img-2-desktop-md.jpg 1200w,
+                          assets/devihome-img-2/devihome-img-2-desktop-lg.jpg 1743w
+                        "
+                        sizes="(min-width: 1200px) 50vw, 100vw"
+                      />
+                      <img
+                        src="assets/devihome-img-2/devihome-img-2-desktop-md.jpg"
+                        width="1743"
+                        height="1289"
+                        alt="Devis Home quotation and supplier-management interface — image 2 of 2"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                </div>
+                <div class="carousel-controls">
+                  <button
+                    class="carousel-arrow"
+                    type="button"
+                    data-prev
+                    aria-label="Previous image"
+                  >
+                    ‹
+                  </button>
+                  <div class="carousel-dots">
+                    <button
+                      class="carousel-dot is-active"
+                      type="button"
+                      aria-label="Show image 1"
+                      aria-pressed="true"
+                      data-go-to="0"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show image 2"
+                      aria-pressed="false"
+                      data-go-to="1"
+                    ></button>
+                  </div>
+                  <button
+                    class="carousel-arrow"
+                    type="button"
+                    data-next
+                    aria-label="Next image"
+                  >
+                    ›
+                  </button>
+                  <span class="carousel-count"
+                    ><span data-current>01</span> / 02</span
+                  >
+                </div>
+              </div>
+              <span class="visual-corner">03 / WORKFLOW</span
+              ><span class="visual-open">↗</span></a
+            >
+            <div class="project-meta">
+              <span>QUOTING · SUPPLIER MANAGEMENT</span
+              ><span>2023 / 2025*</span>
+            </div>
+            <div class="project-title-row">
+              <h3>Devis Home</h3>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p data-i18n="projects.devis.desc">
+              B2B quote and supplier-management product. I reviewed frontend
+              implementation practices, introduced Tailwind CSS for static
+              styling, and advocated for data consistency in a
+              transaction-related code review.
+            </p>
+            <div class="tag-list">
+              <span>Next.js</span><span>NestJS</span><span>TypeORM</span
+              ><span>PostgreSQL</span><span>Tailwind CSS</span>
+            </div>
+            <a
+              class="project-link"
+              href="https://devihomes.com/index.php"
+              target="_blank"
+              rel="noreferrer"
+              ><span data-i18n="projects.visit">Visit product website</span>
+              ↗</a
+            >
+          </article>
+          <article class="project-card">
+            <div class="project-visual visual-kyc">
+              <picture class="project-picture"
+                ><source
+                  media="(max-width: 680px)"
+                  srcset="assets/kyc-mobile.svg" />
+                <source
+                  media="(max-width: 1024px)"
+                  srcset="assets/kyc-tablet.svg" />
+                <img
+                  src="assets/kyc-desktop.svg"
+                  alt="Illustrative document verification workflow interface"
+                  loading="lazy"
+                  decoding="async" /></picture
+              ><span class="visual-corner">04 / PLATFORM</span>
+            </div>
+            <div class="project-meta">
+              <span>FINANCIAL SERVICES · KYC</span><span>FLOW DIGITAL</span>
+            </div>
+            <div class="project-title-row">
+              <h3>KYC Platform</h3>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p data-i18n="projects.kyc.desc">
+              An event-driven document-verification pipeline connecting document
+              ingestion, asynchronous processing, AI services, real-time status
+              updates and PostgreSQL persistence. Reported review time fell from
+              20–30 minutes to 5–10 minutes per application.
+            </p>
+            <div class="tag-list">
+              <span>NestJS</span><span>RabbitMQ</span><span>PostgreSQL</span
+              ><span>Python services</span><span>Docker</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual visual-dmp">
+              <div
+                class="project-carousel project-carousel-svg"
+                data-carousel
+                aria-label="DmpEServices workflow and dynamic form builder illustrations"
+              >
+                <div class="carousel-track">
+                  <div
+                    class="carousel-slide is-active"
+                    data-slide="0"
+                    aria-hidden="false"
+                  >
+                    <img
+                      src="assets/dmp-workflow.svg"
+                      width="1600"
+                      height="900"
+                      alt="DmpEServices visual workflow engine with connected validation, decision and notification steps"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="carousel-slide" data-slide="1" aria-hidden="true">
+                    <img
+                      src="assets/dmp-form-builder.svg"
+                      width="1600"
+                      height="900"
+                      alt="DmpEServices dynamic form builder with field palette, form canvas and configuration panel"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+                <div class="carousel-controls">
+                  <button
+                    class="carousel-arrow"
+                    type="button"
+                    data-prev
+                    aria-label="Previous illustration"
+                  >
+                    ‹
+                  </button>
+                  <div class="carousel-dots">
+                    <button
+                      class="carousel-dot is-active"
+                      type="button"
+                      aria-label="Show workflow engine"
+                      aria-pressed="true"
+                      data-go-to="0"
+                    ></button
+                    ><button
+                      class="carousel-dot"
+                      type="button"
+                      aria-label="Show dynamic form builder"
+                      aria-pressed="false"
+                      data-go-to="1"
+                    ></button>
+                  </div>
+                  <button
+                    class="carousel-arrow"
+                    type="button"
+                    data-next
+                    aria-label="Next illustration"
+                  >
+                    ›
+                  </button>
+                  <span class="carousel-count"
+                    ><span data-current>01</span> / 02</span
+                  >
+                </div>
+              </div>
+              <span class="visual-corner">05 / PUBLIC SECTOR</span>
+            </div>
+            <div class="project-meta">
+              <span>HEALTHCARE · REGULATORY</span><span>ABA TECHNOLOGY</span>
+            </div>
+            <div class="project-title-row">
+              <h3>DmpEServices</h3>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p data-i18n="projects.dmp.desc">
+              Regulatory platform for pharmaceutical product registration, with
+              a NestJS service architecture, Angular applications, dynamic
+              forms, workflow validation, real-time notifications and
+              centralized multi-tenant identity management.
+            </p>
+            <div class="tag-list">
+              <span>NestJS</span><span>Angular</span><span>Keycloak</span
+              ><span>WebSockets</span><span>Nx</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual visual-metagis">
+              <div
+                class="project-carousel project-carousel-svg"
+                data-carousel
+                aria-label="MetaGIS project illustration"
+              >
+                <div class="carousel-track">
+                  <div
+                    class="carousel-slide is-active"
+                    data-slide="0"
+                    aria-hidden="false"
+                  >
+                    <picture class="project-picture"
+                      ><source
+                        media="(max-width: 680px)"
+                        srcset="assets/metagis-mobile.svg" />
+                      <source
+                        media="(max-width: 1024px)"
+                        srcset="assets/metagis-tablet.svg" />
+                      <img
+                        src="assets/metagis-desktop.svg"
+                        width="1600"
+                        height="900"
+                        alt="MetaGIS geographic information system with interactive map layers and field mission markers"
+                        loading="lazy"
+                        decoding="async"
+                    /></picture>
+                  </div>
+                </div>
+                <div class="carousel-controls carousel-controls-single">
+                  <span class="carousel-count">01 / 01</span>
+                </div>
+              </div>
+              <span class="visual-corner">06 / GEO-SPATIAL</span>
+            </div>
+            <div class="project-meta">
+              <span>FIELD OPERATIONS · GIS</span><span>ABA TECHNOLOGY</span>
+            </div>
+            <div class="project-title-row">
+              <h3>MetaGIS</h3>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p data-i18n="projects.metagis.desc">
+              Web GIS platform for field-mission management, featuring
+              interactive 2D/3D map visualization, role-based module access and
+              shared application architecture.
+            </p>
+            <div class="tag-list">
+              <span>Angular</span><span>NgRx</span><span>OpenLayers</span
+              ><span>TypeScript</span><span>Nx</span>
             </div>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section id="skills" data-lang="en" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>Technical Skills</h2></div>
-        <div class="skills-grid">
-          <div class="skill-cat">
-            <h3>Frontend</h3>
-            <ul class="skill-list">
-              <li>Angular</li>
-              <li>React</li>
-              <li>Next.js</li>
-              <li>TypeScript</li>
-              <li>HTML5/CSS3/SCSS</li>
-              <li>TailwindCSS</li>
-              <li>PrimeNG</li>
-            </ul>
-          </div>
-          <div class="skill-cat">
-            <h3>Backend</h3>
-            <ul class="skill-list">
-              <li>NestJS</li>
-              <li>Node.js</li>
-              <li>Express</li>
-              <li>.NET/C#</li>
-              <li>REST</li>
-              <li>GraphQL</li>
-              <li>Microservices</li>
-              <li>WebSocket</li>
-            </ul>
-          </div>
-          <div class="skill-cat">
-            <h3>Databases</h3>
-            <ul class="skill-list">
-              <li>PostgreSQL</li>
-              <li>MongoDB</li>
-              <li>SQL Server</li>
-              <li>TypeORM</li>
-            </ul>
-          </div>
-          <div class="skill-cat">
-            <h3>Auth &amp; Security</h3>
-            <ul class="skill-list">
-              <li>Keycloak</li>
-              <li>OAuth2</li>
-              <li>JWT</li>
-              <li>RBAC</li>
-              <li>Multi-tenant systems</li>
-            </ul>
-          </div>
-          <div class="skill-cat">
-            <h3>Infra &amp; Quality</h3>
-            <ul class="skill-list">
-              <li>Docker</li>
-              <li>Git/GitFlow</li>
-              <li>Jest</li>
-              <li>Jasmine</li>
-              <li>Swagger/OpenAPI</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="skills-fr" data-lang="fr" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>Compétences techniques</h2></div>
-        <div class="skills-grid">
-          <div class="skill-cat">
-            <h3>Frontend</h3>
-            <ul class="skill-list">
-              <li>Angular</li>
-              <li>React</li>
-              <li>Next.js</li>
-              <li>TypeScript</li>
-              <li>HTML5/CSS3/SCSS</li>
-              <li>TailwindCSS</li>
-              <li>PrimeNG</li>
-            </ul>
-          </div>
-          <div class="skill-cat">
-            <h3>Backend</h3>
-            <ul class="skill-list">
-              <li>NestJS</li>
-              <li>Node.js</li>
-              <li>Express</li>
-              <li>.NET/C#</li>
-              <li>REST</li>
-              <li>GraphQL</li>
-              <li>Microservices</li>
-              <li>WebSocket</li>
-            </ul>
-          </div>
-          <div class="skill-cat">
-            <h3>Bases de données</h3>
-            <ul class="skill-list">
-              <li>PostgreSQL</li>
-              <li>MongoDB</li>
-              <li>SQL Server</li>
-              <li>TypeORM</li>
-            </ul>
-          </div>
-          <div class="skill-cat">
-            <h3>Auth &amp; sécurité</h3>
-            <ul class="skill-list">
-              <li>Keycloak</li>
-              <li>OAuth2</li>
-              <li>JWT</li>
-              <li>RBAC</li>
-              <li>Systèmes multi-tenant</li>
-            </ul>
-          </div>
-          <div class="skill-cat">
-            <h3>Infra &amp; qualité</h3>
-            <ul class="skill-list">
-              <li>Docker</li>
-              <li>Git/GitFlow</li>
-              <li>Jest</li>
-              <li>Jasmine</li>
-              <li>Swagger/OpenAPI</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience" data-lang="en" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>Experience</h2></div>
-        <div class="timeline">
-          <div class="tl-item">
-            <div class="tl-dot-col">
-              <div class="tl-dot"></div>
-              <div class="tl-line"></div>
-            </div>
-            <div>
-              <p class="tl-role">Full-Stack Developer</p>
-              <p class="tl-org">Flow Digital</p>
-              <p class="tl-date">Oct 2023 — Present</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot-col">
-              <div class="tl-dot"></div>
-              <div class="tl-line"></div>
-            </div>
-            <div>
-              <p class="tl-role">Full-Stack Developer</p>
-              <p class="tl-org">ABA Technology</p>
-              <p class="tl-date">Dec 2021 — Oct 2023</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot-col">
-              <div class="tl-dot"></div>
-              <div class="tl-line"></div>
-            </div>
-            <div>
-              <p class="tl-role">Software Developer</p>
-              <p class="tl-org">Finashore</p>
-              <p class="tl-date">May 2019 — Jun 2021</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot-col"><div class="tl-dot"></div></div>
-            <div>
-              <p class="tl-role">C# Developer Intern</p>
-              <p class="tl-org">Municipality of Settat</p>
-              <p class="tl-date">Apr 2018</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="experience-fr" data-lang="fr" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>Expérience</h2></div>
-        <div class="timeline">
-          <div class="tl-item">
-            <div class="tl-dot-col">
-              <div class="tl-dot"></div>
-              <div class="tl-line"></div>
-            </div>
-            <div>
-              <p class="tl-role">Développeur Full-Stack</p>
-              <p class="tl-org">Flow Digital</p>
-              <p class="tl-date">Oct 2023 — Présent</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot-col">
-              <div class="tl-dot"></div>
-              <div class="tl-line"></div>
-            </div>
-            <div>
-              <p class="tl-role">Développeur Full-Stack</p>
-              <p class="tl-org">ABA Technology</p>
-              <p class="tl-date">Déc 2021 — Oct 2023</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot-col">
-              <div class="tl-dot"></div>
-              <div class="tl-line"></div>
-            </div>
-            <div>
-              <p class="tl-role">Développeur logiciel</p>
-              <p class="tl-org">Finashore</p>
-              <p class="tl-date">Mai 2019 — Juin 2021</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot-col"><div class="tl-dot"></div></div>
-            <div>
-              <p class="tl-role">Développeur C# (Stage)</p>
-              <p class="tl-org">Commune de Settat</p>
-              <p class="tl-date">Avr 2018</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="education" data-lang="en" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>Education</h2></div>
-        <p class="tl-role">Diploma in Full-Stack Development</p>
-        <p class="tl-org">ISTA 2 Settat — 2017 — 2018</p>
-      </div>
-    </section>
-    <section id="education-fr" data-lang="fr" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>Formation</h2></div>
-        <p class="tl-role">
-          Diplôme de Technicien Spécialisé en Développement Full-Stack
+        <p class="project-note" data-i18n="work.note">
+          *Project periods are approximate and reflect assignment chronology,
+          not necessarily exact delivery dates. Visuals for projects without
+          public product access are original illustrations, not screenshots of
+          private applications.
         </p>
-        <p class="tl-org">ISTA 2 Settat — 2017 — 2018</p>
-      </div>
-    </section>
+      </section>
 
-    <section id="contact" data-lang="en" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>Contact</h2></div>
-        <div class="contact-inner">
-          <p class="about-body" style="margin: 0">
-            Open to senior and lead full-stack roles. The fastest way to reach
-            me is email.
+      <section class="expertise-section section-wrap" id="expertise">
+        <div class="section-heading">
+          <div>
+            <div class="section-tag">
+              <span>04</span
+              ><span data-i18n="sections.expertise">SKILLS & COMPETENCIES</span>
+            </div>
+            <h2 data-i18n-html="expertise.heading">
+              Skills that turn<br />ideas into <em>systems.</em>
+            </h2>
+          </div>
+          <p data-i18n="expertise.subheading">
+            A practical overview of the technologies, engineering practices and
+            platforms I have worked with across backend, frontend and production
+            delivery.
           </p>
-          <div class="contact-links">
-            <a
-              href="mailto:taoussi.hamza.dev@gmail.com"
-              class="btn btn-primary"
-              >Email</a
-            >
-            <a
-              href="https://www.linkedin.com/in/hamza-taoussi-385132160/"
-              class="btn btn-secondary"
-              target="_blank"
-              rel="noopener"
-              >LinkedIn</a
-            >
-            <a
-              href="https://github.com/Hazix00"
-              class="btn btn-secondary"
-              target="_blank"
-              rel="noopener"
-              >GitHub</a
-            >
-            <a href="#" class="btn btn-ghost">Download CV</a>
+        </div>
+        <div class="expertise-grid">
+          <div class="expertise-card">
+            <span class="expertise-index">01</span>
+            <h3 data-i18n="skills.backend">Backend & APIs</h3>
+            <p data-i18n="skills.backendList">
+              Node.js · TypeScript · NestJS · Express · REST APIs · GraphQL ·
+              Microservices · RabbitMQ · WebSockets
+            </p>
+          </div>
+          <div class="expertise-card">
+            <span class="expertise-index">02</span>
+            <h3 data-i18n="skills.frontend">Frontend development</h3>
+            <p data-i18n="skills.frontendList">
+              Angular · React · Next.js · JavaScript · TypeScript · Tailwind CSS
+              · NgRx
+            </p>
+          </div>
+          <div class="expertise-card">
+            <span class="expertise-index">03</span>
+            <h3 data-i18n="skills.data">Databases & data access</h3>
+            <p data-i18n="skills.dataList">
+              PostgreSQL · MongoDB · Microsoft SQL Server · TypeORM · SQL · Data
+              modeling
+            </p>
+          </div>
+          <div class="expertise-card">
+            <span class="expertise-index">04</span>
+            <h3 data-i18n="skills.cloud">Cloud, DevOps & delivery</h3>
+            <p data-i18n="skills.cloudList">
+              AWS · Docker · Docker Compose · CI/CD · Git · GitFlow · Nx
+              monorepo · Container deployment
+            </p>
+          </div>
+          <div class="expertise-card">
+            <span class="expertise-index">05</span>
+            <h3 data-i18n="skills.security">Security & identity</h3>
+            <p data-i18n="skills.securityList">
+              Keycloak · OAuth 2.0 · OpenID Connect · JWT · RBAC · Multi-tenant
+              access control
+            </p>
+          </div>
+          <div class="expertise-card">
+            <span class="expertise-index">06</span>
+            <h3 data-i18n="skills.quality">Testing & engineering quality</h3>
+            <p data-i18n="skills.qualityList">
+              Jest · Jasmine · TDD · Code review · Swagger / OpenAPI · Technical
+              documentation
+            </p>
+          </div>
+          <div class="expertise-card">
+            <span class="expertise-index">07</span>
+            <h3 data-i18n="skills.other">Languages & automation</h3>
+            <p data-i18n="skills.otherList">
+              C# · .NET · Python · PowerShell · SQL scripting · Workflow
+              automation
+            </p>
+          </div>
+          <div class="expertise-card">
+            <span class="expertise-index">08</span>
+            <h3 data-i18n="skills.architecture">
+              Architecture & problem solving
+            </h3>
+            <p data-i18n="skills.architectureList">
+              Microservice design · Event-driven systems · Real-time systems ·
+              Performance optimization · Debugging · Production support
+            </p>
           </div>
         </div>
-      </div>
-    </section>
-    <section id="contact-fr" data-lang="fr" data-reveal>
-      <div class="wrap">
-        <div class="section-head"><h2>Contact</h2></div>
-        <div class="contact-inner">
-          <p class="about-body" style="margin: 0">
-            Ouvert aux postes full-stack senior et lead. Le plus rapide pour me
-            joindre est l'e-mail.
-          </p>
-          <div class="contact-links">
-            <a
-              href="mailto:taoussi.hamza.dev@gmail.com"
-              class="btn btn-primary"
-              >E-mail</a
-            >
-            <a
-              href="https://linkedin.com/in/hamza-t"
-              class="btn btn-secondary"
-              target="_blank"
-              rel="noopener"
-              >LinkedIn</a
-            >
-            <a
-              href="https://github.com/Hazix00"
-              class="btn btn-secondary"
-              target="_blank"
-              rel="noopener"
-              >GitHub</a
-            >
-            <a href="#" class="btn btn-ghost">Télécharger le CV</a>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <footer>
-      <span>© 2026 Hamza Taoussi</span>
-      <span data-lang="en">Casablanca-Settat, Morocco (Remote)</span>
-      <span data-lang="fr">Casablanca-Settat, Maroc (Télétravail)</span>
+      <section class="experience-section section-wrap" id="experience">
+        <div class="section-heading">
+          <div>
+            <div class="section-tag">
+              <span>05</span
+              ><span data-i18n="sections.journey">THE JOURNEY</span>
+            </div>
+            <h2 data-i18n="experience.heading">
+              Experience built<br />through delivery.
+            </h2>
+          </div>
+          <p data-i18n="experience.subheading">
+            Different products, teams and constraints — with a consistent focus
+            on ownership, learning and making systems more useful.
+          </p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">OCT 2023 — SEP 2026</div>
+            <div>
+              <h3>Flow Digital Transformation</h3>
+              <p class="timeline-role" data-i18n="experience.flowrole">
+                Full-Stack Developer · Client and internal projects
+              </p>
+              <p data-i18n="experience.flow">
+                Worked across Keeze, Devis Home, Lizee and an internal KYC
+                initiative. Backend-led full-stack delivery, performance
+                optimization, integrations, production support and cross-team
+                technical collaboration.
+              </p>
+              <div class="timeline-tags">
+                NestJS · Next.js · PostgreSQL · RabbitMQ · Docker
+              </div>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">DEC 2021 — OCT 2023</div>
+            <div>
+              <h3>ABA Technology</h3>
+              <p class="timeline-role" data-i18n="experience.abarole">
+                Full-Stack Developer
+              </p>
+              <p data-i18n="experience.aba">
+                Built complex Angular features including dynamic form and
+                workflow builders, introduced an Nx monorepo structure, and
+                contributed to a regulatory platform's backend architecture and
+                real-time capabilities.
+              </p>
+              <div class="timeline-tags">
+                Angular · NestJS · Nx · Keycloak · WebSockets
+              </div>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">MAY 2019 — JUN 2021</div>
+            <div>
+              <h3>Finashore</h3>
+              <p class="timeline-role" data-i18n="experience.finarole">
+                Software Developer · C#
+              </p>
+              <p data-i18n="experience.fina">
+                Developed and maintained desktop applications supporting
+                document digitization, data entry, supervisor operations,
+                verification and client delivery. Also handled database
+                operations, automation and production troubleshooting.
+              </p>
+              <div class="timeline-tags">
+                C# · SQL Server · PowerShell · VBScript
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section section-wrap" id="contact">
+        <div class="contact-orb" aria-hidden="true"></div>
+        <div class="section-tag">
+          <span>06</span><span data-i18n="sections.contact">NEXT CHAPTER</span>
+        </div>
+        <p class="contact-kicker" data-i18n="contact.kicker">
+          HAVE A GOOD PROBLEM TO SOLVE?
+        </p>
+        <h2 data-i18n-html="contact.heading">
+          Let's build something<br /><em>meaningful.</em>
+        </h2>
+        <a class="contact-email" href="mailto:taoussi.hamza.dev@gmail.com"
+          >taoussi.hamza.dev@gmail.com <span>↗</span></a
+        >
+        <div class="contact-links">
+          <a
+            href="https://www.linkedin.com/in/hamza-taoussi-385132160"
+            target="_blank"
+            rel="noreferrer"
+            >LINKEDIN ↗</a
+          ><a href="https://github.com/Hazix00" target="_blank" rel="noreferrer"
+            >GITHUB ↗</a
+          ><a href="mailto:taoussi.hamza.dev@gmail.com">EMAIL ↗</a>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer section-wrap">
+      <a class="brand" href="#top"
+        ><span class="brand-mark">H<span>.</span></span
+        ><span>HAMZA TAOUSSI</span></a
+      ><span data-i18n="footer.note"
+        >Designed with intent. Built for the web.</span
+      ><span>© <span id="currentYear"></span> HAMZA TAOUSSI</span>
     </footer>
-
-    <script
-      data-cfasync="false"
-      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-    ></script>
-    <script>
-      function safeGet(key) {
-        try {
-          return localStorage.getItem(key);
-        } catch (e) {
-          return null;
-        }
-      }
-      function safeSet(key, val) {
-        try {
-          localStorage.setItem(key, val);
-        } catch (e) {}
-      }
-      function setLang(lang) {
-        document.documentElement.setAttribute("data-lang", lang);
-        document
-          .getElementById("lang-en")
-          .setAttribute("aria-pressed", lang === "en");
-        document
-          .getElementById("lang-fr")
-          .setAttribute("aria-pressed", lang === "fr");
-        safeSet("hzt-lang", lang);
-      }
-      function toggleTheme() {
-        var next =
-          document.documentElement.getAttribute("data-theme") === "light"
-            ? "dark"
-            : "light";
-        document.documentElement.setAttribute("data-theme", next);
-        document.getElementById("icon-dark").style.display =
-          next === "dark" ? "" : "none";
-        document.getElementById("icon-light").style.display =
-          next === "light" ? "" : "none";
-        safeSet("hzt-theme", next);
-      }
-      (function init() {
-        var lang = safeGet("hzt-lang") || "en";
-        var theme = safeGet("hzt-theme") || "dark";
-        setLang(lang);
-        document.documentElement.setAttribute("data-theme", theme);
-        document.getElementById("icon-dark").style.display =
-          theme === "dark" ? "" : "none";
-        document.getElementById("icon-light").style.display =
-          theme === "light" ? "" : "none";
-        const msPerYear = 365.25 * 24 * 60 * 60 * 1000;
-        const startDate = new Date(2019, 5, 13);
-        const diffBetweenStartTilToday = new Date() - startDate;
-        const yearsExp = Math.round(
-          Math.abs(diffBetweenStartTilToday) / msPerYear,
-        );
-        document
-          .querySelectorAll("[data-years]")
-          .forEach((el) => (el.innerHTML = yearsExp));
-      })();
-    </script>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" data-i18n="nav.about">About</a
+      ><a href="#work" data-i18n="nav.work">Work</a
+      ><a href="#expertise" data-i18n="nav.expertise">Skills</a
+      ><a href="#experience" data-i18n="nav.experience">Experience</a
+      ><a href="mailto:taoussi.hamza.dev@gmail.com" data-i18n="nav.contact"
+        >Let's talk ↗</a
+      >
+    </div>
   </body>
 </html>
