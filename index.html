@@ -7,17 +7,22 @@
     <meta
       name="description"
       content="Hamza Taoussi — Senior Full-Stack Developer building reliable products, distributed systems and thoughtful digital experiences."
+      data-i18n-content="meta.description"
     />
     <meta
       property="og:title"
       content="Hamza Taoussi — Senior Full-Stack Developer"
+      data-i18n-content="meta.title"
     />
     <meta
       property="og:description"
       content="Backend-led full-stack engineering, system architecture and product delivery."
+      data-i18n-content="meta.ogDescription"
     />
     <meta property="og:type" content="website" />
-    <title>Hamza Taoussi — Senior Full-Stack Developer</title>
+    <title data-i18n="meta.title">
+      Hamza Taoussi — Senior Full-Stack Developer
+    </title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,11 +37,19 @@
   <body>
     <div class="grain" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Hamza Taoussi home"
+      <a
+        class="brand"
+        href="#top"
+        aria-label="Hamza Taoussi home"
+        data-i18n-aria-label="nav.home"
         ><span class="brand-mark">H<span>.</span></span
         ><span>HAMZA TAOUSSI</span></a
       >
-      <nav class="desktop-nav" aria-label="Main navigation">
+      <nav
+        class="desktop-nav"
+        aria-label="Main navigation"
+        data-i18n-aria-label="nav.mainLabel"
+      >
         <a href="#about" data-i18n="nav.about">About</a
         ><a href="#work" data-i18n="nav.work">Work</a
         ><a href="#expertise" data-i18n="nav.expertise">Skills</a
@@ -47,10 +60,18 @@
           class="language-toggle"
           id="languageToggle"
           aria-label="Switch language"
+          data-i18n-aria-label="nav.switchLanguage"
         >
           EN <span>↗</span>
         </button>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" title="Switch theme">
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-label="Switch to dark theme"
+          title="Switch theme"
+          data-i18n-title="theme.switch"
+        >
           <span aria-hidden="true">☾</span>
         </button>
         <a
@@ -63,6 +84,7 @@
           class="menu-toggle"
           id="menuToggle"
           aria-label="Open navigation"
+          data-i18n-aria-label="nav.openMenu"
           aria-expanded="false"
         >
           <i></i><i></i>
@@ -108,25 +130,35 @@
           <div
             class="hero-art"
             aria-label="Abstract system architecture illustration"
+            data-i18n-aria-label="hero.artLabel"
           >
             <div class="orbit orbit-one"></div>
             <div class="orbit orbit-two"></div>
-            <div class="art-label label-top">THINK / BUILD / IMPROVE</div>
+            <div class="art-label label-top" data-i18n="hero.artMotto">
+              THINK / BUILD / IMPROVE
+            </div>
             <div class="core-node">
               <span class="core-symbol">H<span>.</span></span
-              ><small>ENGINEERING<br />WITH INTENT</small>
+              ><small data-i18n-html="hero.artCore"
+                >ENGINEERING<br />WITH INTENT</small
+              >
             </div>
-            <div class="orbit-node node-a"><b>API</b><small>DESIGN</small></div>
-            <div class="orbit-node node-b"><b>DATA</b><small>FLOW</small></div>
+            <div class="orbit-node node-a">
+              <b>API</b><small data-i18n="hero.artDesign">DESIGN</small>
+            </div>
+            <div class="orbit-node node-b">
+              <b>DATA</b><small data-i18n="hero.artFlow">FLOW</small>
+            </div>
             <div class="orbit-node node-c">
-              <b>UX</b><small>DELIVERY</small>
+              <b>UX</b><small data-i18n="hero.artDelivery">DELIVERY</small>
             </div>
             <div class="orbit-node node-d">
-              <b>OPS</b><small>RELIABILITY</small>
+              <b>OPS</b
+              ><small data-i18n="hero.artReliability">RELIABILITY</small>
             </div>
             <div class="art-cross cross-a">+</div>
             <div class="art-cross cross-b">+</div>
-            <div class="art-label label-bottom">
+            <div class="art-label label-bottom" data-i18n="hero.artFooter">
               NODE.JS · TYPESCRIPT · SYSTEMS
             </div>
           </div>
@@ -134,7 +166,7 @@
         <div class="hero-foot">
           <span data-i18n="hero.location"
             >BASED IN MOROCCO · WORKING WORLDWIDE</span
-          ><span>SCROLL TO EXPLORE ↓</span>
+          ><span data-i18n="hero.scrollToExplore">SCROLL TO EXPLORE ↓</span>
         </div>
       </section>
 
@@ -208,10 +240,12 @@
               target="_blank"
               rel="noreferrer"
               aria-label="Visit Keeze website"
+              data-i18n-aria-label="projects.visitKeeze"
               ><div
                 class="project-carousel"
                 data-carousel
                 aria-label="Keeze project images"
+                data-i18n-aria-label="projects.carouselLabel"
               >
                 <div class="carousel-track">
                   <div
@@ -444,11 +478,14 @@
                   >
                 </div>
               </div>
-              <span class="visual-corner">01 / PRODUCT</span
+              <span class="visual-corner" data-i18n="projects.productLabel"
+                >01 / PRODUCT</span
               ><span class="visual-open">↗</span></a
             >
             <div class="project-meta">
-              <span>EVENT OPERATIONS · B2B</span><span>2023 — 2024*</span>
+              <span data-i18n="projects.keeze.category"
+                >EVENT OPERATIONS · B2B</span
+              ><span>2023 — 2024*</span>
             </div>
             <div class="project-title-row">
               <h3>Keeze</h3>
@@ -480,10 +517,12 @@
               target="_blank"
               rel="noreferrer"
               aria-label="Visit Lizee website"
+              data-i18n-aria-label="projects.visitLizee"
               ><div
                 class="project-carousel"
                 data-carousel
                 aria-label="Lizee project images"
+                data-i18n-aria-label="projects.carouselLabel"
               >
                 <div class="carousel-track">
                   <div
@@ -1118,11 +1157,14 @@
                   >
                 </div>
               </div>
-              <span class="visual-corner">02 / SAAS</span
+              <span class="visual-corner" data-i18n="projects.cornerSaas"
+                >02 / SAAS</span
               ><span class="visual-open">↗</span></a
             >
             <div class="project-meta">
-              <span>CIRCULAR COMMERCE · B2B</span><span>2024 — 2026*</span>
+              <span data-i18n="projects.lizee.category"
+                >CIRCULAR COMMERCE · B2B</span
+              ><span>2024 — 2026*</span>
             </div>
             <div class="project-title-row">
               <h3>Lizee</h3>
@@ -1331,11 +1373,13 @@
                   >
                 </div>
               </div>
-              <span class="visual-corner">03 / WORKFLOW</span
+              <span class="visual-corner" data-i18n="projects.cornerWorkflow"
+                >03 / WORKFLOW</span
               ><span class="visual-open">↗</span></a
             >
             <div class="project-meta">
-              <span>QUOTING · SUPPLIER MANAGEMENT</span
+              <span data-i18n="projects.devis.category"
+                >QUOTING · SUPPLIER MANAGEMENT</span
               ><span>2023 / 2025*</span>
             </div>
             <div class="project-title-row">
@@ -1375,10 +1419,14 @@
                   alt="Illustrative document verification workflow interface"
                   loading="lazy"
                   decoding="async" /></picture
-              ><span class="visual-corner">04 / PLATFORM</span>
+              ><span class="visual-corner" data-i18n="projects.cornerPlatform"
+                >04 / PLATFORM</span
+              >
             </div>
             <div class="project-meta">
-              <span>FINANCIAL SERVICES · KYC</span><span>FLOW DIGITAL</span>
+              <span data-i18n="projects.kyc.category"
+                >FINANCIAL SERVICES · KYC</span
+              ><span>FLOW DIGITAL</span>
             </div>
             <div class="project-title-row">
               <h3>KYC Platform</h3>
@@ -1466,10 +1514,16 @@
                   >
                 </div>
               </div>
-              <span class="visual-corner">05 / PUBLIC SECTOR</span>
+              <span
+                class="visual-corner"
+                data-i18n="projects.cornerPublicSector"
+                >05 / PUBLIC SECTOR</span
+              >
             </div>
             <div class="project-meta">
-              <span>HEALTHCARE · REGULATORY</span><span>ABA TECHNOLOGY</span>
+              <span data-i18n="projects.dmp.category"
+                >HEALTHCARE · REGULATORY</span
+              ><span>ABA TECHNOLOGY</span>
             </div>
             <div class="project-title-row">
               <h3>DmpEServices</h3>
@@ -1520,10 +1574,14 @@
                   <span class="carousel-count">01 / 01</span>
                 </div>
               </div>
-              <span class="visual-corner">06 / GEO-SPATIAL</span>
+              <span class="visual-corner" data-i18n="projects.cornerGeospatial"
+                >06 / GEO-SPATIAL</span
+              >
             </div>
             <div class="project-meta">
-              <span>FIELD OPERATIONS · GIS</span><span>ABA TECHNOLOGY</span>
+              <span data-i18n="projects.metagis.category"
+                >FIELD OPERATIONS · GIS</span
+              ><span>ABA TECHNOLOGY</span>
             </div>
             <div class="project-title-row">
               <h3>MetaGIS</h3>
@@ -1632,6 +1690,14 @@
               Performance optimization · Debugging · Production support
             </p>
           </div>
+          <div class="expertise-card">
+            <span class="expertise-index">09</span>
+            <h3 data-i18n="skills.ai">AI integration & agentic development</h3>
+            <p data-i18n="skills.aiList">
+              LLM integration · Agentic development with Claude Code · Cursor AI
+              · Codex
+            </p>
+          </div>
         </div>
       </section>
 
@@ -1666,7 +1732,8 @@
                 technical collaboration.
               </p>
               <div class="timeline-tags">
-                NestJS · Next.js · PostgreSQL · RabbitMQ · Docker
+                React . NestJS · Next.js · PostgreSQL · MongoDB · RabbitMQ ·
+                Docker · CI/CD · Datadog · Grafana
               </div>
             </div>
           </article>
@@ -1684,7 +1751,8 @@
                 real-time capabilities.
               </p>
               <div class="timeline-tags">
-                Angular · NestJS · Nx · Keycloak · WebSockets
+                Angular · NestJS · Nx · Keycloak · WebSockets · MongoDB · Docker
+                · GitLab CI/CD · Kubernetes
               </div>
             </div>
           </article>
@@ -1729,7 +1797,12 @@
             <span data-i18n="contact.copyEmail">Copy</span>
           </button>
         </div>
-        <span class="copy-email-status" data-copy-status role="status" aria-live="polite"></span>
+        <span
+          class="copy-email-status"
+          data-copy-status
+          role="status"
+          aria-live="polite"
+        ></span>
         <div class="contact-links">
           <a
             href="https://www.linkedin.com/in/hamza-taoussi-385132160"
@@ -1738,7 +1811,11 @@
             >LINKEDIN ↗</a
           ><a href="https://github.com/Hazix00" target="_blank" rel="noreferrer"
             >GITHUB ↗</a
-          ><a href="mailto:taoussi.hamza.dev@gmail.com">EMAIL ↗</a>
+          ><a
+            href="mailto:taoussi.hamza.dev@gmail.com"
+            data-i18n="contact.emailLink"
+            >EMAIL ↗</a
+          >
         </div>
       </section>
     </main>

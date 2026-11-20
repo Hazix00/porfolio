@@ -12,6 +12,61 @@
       const value = dict[el.dataset.i18nHtml];
       if (value) el.innerHTML = value;
     });
+    [
+      ["aria-label", "data-i18n-aria-label"],
+      ["alt", "data-i18n-alt"],
+      ["title", "data-i18n-title"],
+      ["content", "data-i18n-content"],
+    ].forEach(([attribute, keyAttribute]) => {
+      document.querySelectorAll(`[${keyAttribute}]`).forEach((el) => {
+        const value = dict[el.getAttribute(keyAttribute)];
+        if (value) el.setAttribute(attribute, value);
+      });
+    });
+    const menuButton = document.getElementById("menuToggle");
+    const menuIsOpen = document.getElementById("mobileMenu")?.classList.contains("open");
+    if (menuButton) {
+      menuButton.setAttribute(
+        "aria-label",
+        dict[menuIsOpen ? "nav.closeMenu" : "nav.openMenu"],
+      );
+    }
+    document.querySelectorAll("[data-prev]").forEach((el) => {
+      el.setAttribute("aria-label", dict["carousel.previous"]);
+    });
+    document.querySelectorAll("[data-next]").forEach((el) => {
+      el.setAttribute("aria-label", dict["carousel.next"]);
+    });
+    document.querySelectorAll("[data-go-to]").forEach((el) => {
+      const index = Number(el.dataset.goTo) + 1;
+      el.setAttribute("aria-label", dict[`carousel.show${index}`]);
+    });
+    document.querySelectorAll("img[alt]").forEach((el) => {
+      const source = el.dataset.englishAlt || el.alt;
+      el.dataset.englishAlt = source;
+      const count = source.match(/image (\d+) of (\d+)/);
+      const key = source.startsWith("Keeze ")
+        ? "projects.altKeeze"
+        : source.startsWith("Lizee ")
+          ? "projects.altLizee"
+          : source.startsWith("Devis Home ")
+            ? "projects.altDevis"
+            : source.startsWith("DmpEServices visual")
+              ? "projects.altDmpWorkflow"
+              : source.startsWith("DmpEServices dynamic")
+                ? "projects.altDmpForms"
+                : source.startsWith("MetaGIS ")
+                  ? "projects.altMetagis"
+                  : "projects.altKyc";
+      if (dict[key]) {
+        const suffix = count
+          ? currentLanguage === "fr"
+            ? ` — image ${count[1]} sur ${count[2]}`
+            : ` — image ${count[1]} of ${count[2]}`
+          : "";
+        el.alt = `${dict[key]}${suffix}`;
+      }
+    });
     const toggle = document.getElementById("languageToggle");
     if (toggle) toggle.innerHTML = `${lang.toUpperCase()} <span>↗</span>`;
     updateThemeControl();
@@ -85,6 +140,8 @@
   menuToggle?.addEventListener("click", () => {
     const open = menu.classList.toggle("open");
     menuToggle.setAttribute("aria-expanded", String(open));
+    const dict = content[currentLanguage] || content.en;
+    menuToggle.setAttribute("aria-label", dict[open ? "nav.closeMenu" : "nav.openMenu"]);
   });
   menu?.querySelectorAll("a").forEach((a) =>
     a.addEventListener("click", () => {

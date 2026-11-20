@@ -754,7 +754,6 @@ a {
   position: relative;
   padding: 95px 0 105px;
   border-top: 1px solid var(--line);
-  overflow: hidden;
 }
 .contact-orb {
   position: absolute;
@@ -1077,7 +1076,12 @@ a {
   --soft-ink: #c5c8d3;
   --header-bg: rgba(17, 19, 25, 0.9);
   --hero-bg: linear-gradient(145deg, #252338, #1b202d 55%, #1d302d);
-  --hero-glow: radial-gradient(circle, #ffffff18 0, #ffffff08 35%, transparent 70%);
+  --hero-glow: radial-gradient(
+    circle,
+    #ffffff18 0,
+    #ffffff08 35%,
+    transparent 70%
+  );
   --orb-bg: radial-gradient(circle, #50466e 0, #2d293e 42%, transparent 70%);
 }
 @media (prefers-color-scheme: dark) {
@@ -1097,30 +1101,36 @@ a {
     --soft-ink: #c5c8d3;
     --header-bg: rgba(17, 19, 25, 0.9);
     --hero-bg: linear-gradient(145deg, #252338, #1b202d 55%, #1d302d);
-    --hero-glow: radial-gradient(circle, #ffffff18 0, #ffffff08 35%, transparent 70%);
+    --hero-glow: radial-gradient(
+      circle,
+      #ffffff18 0,
+      #ffffff08 35%,
+      transparent 70%
+    );
     --orb-bg: radial-gradient(circle, #50466e 0, #2d293e 42%, transparent 70%);
   }
 }
-:root[data-theme="dark"] :is(
-  .desktop-nav a,
-  .hero-index,
-  .hero-foot,
-  .hero-intro,
-  .section-heading > p,
-  .intro-columns p,
-  .section-tag,
-  .project-meta,
-  .project-card > p,
-  .project-note,
-  .timeline-tags,
-  .copy-email,
-  .contact-links a,
-  .site-footer > span,
-  .expertise-subheading,
-  .expertise-card p,
-  .timeline-date,
-  .timeline-item p
-) {
+:root[data-theme="dark"]
+  :is(
+    .desktop-nav a,
+    .hero-index,
+    .hero-foot,
+    .hero-intro,
+    .section-heading > p,
+    .intro-columns p,
+    .section-tag,
+    .project-meta,
+    .project-card > p,
+    .project-note,
+    .timeline-tags,
+    .copy-email,
+    .contact-links a,
+    .site-footer > span,
+    .expertise-subheading,
+    .expertise-card p,
+    .timeline-date,
+    .timeline-item p
+  ) {
   color: #b0b3c0;
 }
 :root[data-theme="dark"] .project-visual,
@@ -1154,26 +1164,27 @@ a {
   color: #b0b3c0;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) :is(
-    .desktop-nav a,
-    .hero-index,
-    .hero-foot,
-    .hero-intro,
-    .section-heading > p,
-    .intro-columns p,
-    .section-tag,
-    .project-meta,
-    .project-card > p,
-    .project-note,
-    .timeline-tags,
-    .copy-email,
-    .contact-links a,
-    .site-footer > span,
-    .expertise-subheading,
-    .expertise-card p,
-    .timeline-date,
-    .timeline-item p
-  ) {
+  :root:not([data-theme])
+    :is(
+      .desktop-nav a,
+      .hero-index,
+      .hero-foot,
+      .hero-intro,
+      .section-heading > p,
+      .intro-columns p,
+      .section-tag,
+      .project-meta,
+      .project-card > p,
+      .project-note,
+      .timeline-tags,
+      .copy-email,
+      .contact-links a,
+      .site-footer > span,
+      .expertise-subheading,
+      .expertise-card p,
+      .timeline-date,
+      .timeline-item p
+    ) {
     color: #b0b3c0;
   }
   :root:not([data-theme]) .project-visual,
