@@ -103,6 +103,9 @@ window.PORTFOLIO_CONTENT = {
     "sections.contact": "NEXT CHAPTER",
     "contact.kicker": "HAVE A GOOD PROBLEM TO SOLVE?",
     "contact.heading": "Let's build something <em>meaningful.</em>",
+    "contact.copyEmail": "Copy",
+    "contact.emailCopied": "Email copied",
+    "contact.copyFailed": "Could not copy email",
     "footer.note": "Designed with intent. Built for the web.",
   },
   fr: {
@@ -212,6 +215,9 @@ window.PORTFOLIO_CONTENT = {
     "sections.contact": "LA SUITE",
     "contact.kicker": "UN PROBLÈME INTÉRESSANT À RÉSOUDRE ?",
     "contact.heading": "Construisons quelque chose qui a du <em>sens.</em>",
+    "contact.copyEmail": "Copier",
+    "contact.emailCopied": "E-mail copié",
+    "contact.copyFailed": "Impossible de copier l’e-mail",
     "footer.note": "Pensé avec intention. Conçu pour le web.",
   },
 };

@@ -762,6 +762,37 @@ a {
   color: var(--purple);
   margin-left: 10px;
 }
+.contact-email-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.copy-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #777b88;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.copy-email-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+.copy-email:hover,
+.copy-email:focus-visible {
+  color: var(--purple);
+}
+.copy-email-status {
+  margin-left: 10px;
+  font-size: 13px;
+  color: var(--purple);
+}
 .contact-links {
   display: flex;
   gap: 28px;

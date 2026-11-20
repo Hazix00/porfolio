@@ -59,6 +59,17 @@
   const yearEl = document.getElementById("currentYear");
   if (yearEl) yearEl.textContent = now.getFullYear();
 
+  document.querySelector("[data-copy-email]")?.addEventListener("click", async () => {
+    const status = document.querySelector("[data-copy-status]");
+    const dict = content[currentLanguage] || content.en;
+    try {
+      await navigator.clipboard.writeText("taoussi.hamza.dev@gmail.com");
+      status.textContent = dict["contact.emailCopied"];
+    } catch (_) {
+      status.textContent = dict["contact.copyFailed"];
+    }
+  });
+
   // Accessible project-image carousels
   document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll("[data-slide]"));

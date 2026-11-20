@@ -1717,9 +1717,16 @@
         <h2 data-i18n-html="contact.heading">
           Let's build something<br /><em>meaningful.</em>
         </h2>
-        <a class="contact-email" href="mailto:taoussi.hamza.dev@gmail.com"
-          >taoussi.hamza.dev@gmail.com <span>↗</span></a
-        >
+        <div class="contact-email-row">
+          <a class="contact-email" href="mailto:taoussi.hamza.dev@gmail.com"
+            >taoussi.hamza.dev@gmail.com <span>↗</span></a
+          >
+          <button class="copy-email" type="button" data-copy-email>
+            <span class="copy-email-icon" aria-hidden="true">⧉</span>
+            <span data-i18n="contact.copyEmail">Copy</span>
+          </button>
+        </div>
+        <span class="copy-email-status" data-copy-status role="status" aria-live="polite"></span>
         <div class="contact-links">
           <a
             href="https://www.linkedin.com/in/hamza-taoussi-385132160"
