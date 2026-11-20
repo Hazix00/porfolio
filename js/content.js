@@ -5,6 +5,8 @@ window.PORTFOLIO_CONTENT = {
     "nav.expertise": "Expertise",
     "nav.experience": "Experience",
     "nav.contact": "Let's talk",
+    "theme.toLight": "Switch to light theme",
+    "theme.toDark": "Switch to dark theme",
     "hero.availability": "OPEN TO THE RIGHT OPPORTUNITY",
     "hero.kicker": "SENIOR FULL-STACK DEVELOPER · BACKEND-LED",
     "hero.title":
@@ -114,6 +116,8 @@ window.PORTFOLIO_CONTENT = {
     "nav.expertise": "Expertise",
     "nav.experience": "Parcours",
     "nav.contact": "Me contacter",
+    "theme.toLight": "Passer au thème clair",
+    "theme.toDark": "Passer au thème sombre",
     "hero.availability": "À L’ÉCOUTE DES BONNES OPPORTUNITÉS",
     "hero.kicker": "DÉVELOPPEUR FULL-STACK SENIOR · ORIENTÉ BACKEND",
     "hero.title":

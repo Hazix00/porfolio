@@ -14,6 +14,7 @@
     });
     const toggle = document.getElementById("languageToggle");
     if (toggle) toggle.innerHTML = `${lang.toUpperCase()} <span>↗</span>`;
+    updateThemeControl();
     try {
       localStorage.setItem("portfolio-language", lang);
     } catch (_) {}
@@ -33,6 +34,47 @@
     return supported.includes(browser) ? browser : "en";
   };
   let currentLanguage = detectLanguage();
+
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = themeToggle?.querySelector("[aria-hidden]");
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+  const savedTheme = (() => {
+    try {
+      const saved = localStorage.getItem("portfolio-theme");
+      return saved === "light" || saved === "dark" ? saved : null;
+    } catch (_) {
+      return null;
+    }
+  })();
+  if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+  const updateThemeControl = () => {
+    const dark = document.documentElement.dataset.theme
+      ? document.documentElement.dataset.theme === "dark"
+      : systemDark.matches;
+    const dict = content[currentLanguage] || content.en;
+    if (themeToggle) {
+      themeToggle.setAttribute("aria-label", dict[dark ? "theme.toLight" : "theme.toDark"]);
+      themeToggle.setAttribute("aria-pressed", String(dark));
+    }
+    if (themeIcon) themeIcon.textContent = dark ? "☀" : "☾";
+    if (themeMeta) themeMeta.content = dark ? "#111319" : "#f7f8fc";
+  };
+  themeToggle?.addEventListener("click", () => {
+    const dark = document.documentElement.dataset.theme
+      ? document.documentElement.dataset.theme === "dark"
+      : systemDark.matches;
+    const next = dark ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem("portfolio-theme", next);
+    } catch (_) {}
+    updateThemeControl();
+  });
+  systemDark.addEventListener("change", () => {
+    if (!document.documentElement.dataset.theme) updateThemeControl();
+  });
+  updateThemeControl();
   setLanguage(currentLanguage);
   document.getElementById("languageToggle")?.addEventListener("click", () => {
     currentLanguage = currentLanguage === "en" ? "fr" : "en";
